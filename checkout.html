@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout - Mitticraft</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #fdf6ec;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .checkout-container {
+            max-width: 950px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            margin-bottom: 25px;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-item img {
+            width: 120px;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-details h4 {
+            margin: 0 0 5px;
+        }
+
+        .product-details p {
+            margin: 4px 0;
+            color: #555;
+        }
+
+        .summary-box {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .place-order {
+            width: 100%;
+            padding: 15px;
+            background: #ff6b1a;
+            color: white;
+            border: none;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .place-order:hover {
+            background: #e85d0f;
+        }
+
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="checkout-container">
+
+    <h2>Checkout</h2>
+
+    <!-- PRODUCTS LIST -->
+    <div id="productList"></div>
+
+    <!-- SHIPPING DETAILS -->
+    <h3>Shipping Details</h3>
+
+    <input type="text" placeholder="Full Name" required>
+    <input type="text" placeholder="Phone Number" required>
+    <input type="text" placeholder="Address" required>
+    <input type="text" placeholder="City" required>
+    <input type="number" placeholder="Pincode" required>
+
+    <!-- ORDER SUMMARY -->
+    <h3>Order Summary</h3>
+
+    <div class="summary-box">
+        <div class="total-line">
+            <span>Subtotal:</span>
+            <span>₹ <span id="subtotal"></span></span>
+        </div>
+
+        <div class="total-line">
+            <span>Shipping:</span>
+            <span>₹ <span id="shipping">50</span></span>
+        </div>
+
+        <hr>
+
+        <div class="total-line" style="font-weight:bold; font-size:18px;">
+            <span>Total Payable:</span>
+            <span>₹ <span id="finalTotal"></span></span>
+        </div>
+    </div>
+
+    <!-- PAYMENT -->
+    <h3>Payment Method</h3>
+
+    <label>
+        <input type="radio" name="payment" value="online" checked>
+        Pay Online (UPI / Card / Netbanking)
+    </label>
+    <br><br>
+
+    <label>
+        <input type="radio" name="payment" value="cod">
+        Cash on Delivery
+    </label>
+
+    <br><br>
+
+    <label>
+        <input type="checkbox" id="agree">
+        I agree to the Terms & Conditions
+    </label>
+
+    <button class="place-order" onclick="placeOrder()">Place Order</button>
+
+</div>
+
+<script>
+
+    let products = JSON.parse(localStorage.getItem("checkoutItems"));
+    
+    if (!products || products.length === 0) {
+        alert("No items selected for checkout.");
+        window.location.href = "cart.html";
+    }
+    
+    const productList = document.getElementById("productList");
+    
+    let subtotal = 0;
+    
+    products.forEach(item => {
+    
+        let itemTotal = item.total || (item.price * item.quantity);
+        subtotal += itemTotal;
+    
+        productList.innerHTML += `
+            <div class="product-item">
+                <img src="${item.image}">
+                <div class="product-details">
+                    <h4>${item.name}</h4>
+                    <p>Price: ₹${item.price}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                    <p><strong>Total: ₹${itemTotal}</strong></p>
+                </div>
+            </div>
+        `;
+    });
+    
+    let shippingCharge = 50;
+    
+    document.getElementById("subtotal").innerText = subtotal;
+    document.getElementById("finalTotal").innerText = subtotal + shippingCharge;
+    
+    function placeOrder() {
+    
+        if (!document.getElementById("agree").checked) {
+            alert("Please agree to Terms & Conditions");
+            return;
+        }
+    
+        alert("Order Placed Successfully 🎉");
+    
+        // Clear selected checkout items only
+        localStorage.removeItem("checkoutItems");
+    
+        window.location.href = "thankyou.html";
+    }
+    
+    </script>
+
+</body>
+</html>

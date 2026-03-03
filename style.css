@@ -1,0 +1,1142 @@
+/* ============================= */
+/* ===== GLOBAL RESET ===== */
+/* ============================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #ffffff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+
+/* ============================= */
+/* ===== HEADER ===== */
+/* ============================= */
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.header.scrolled {
+    background: #2d1b0f;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.nav a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.nav a:hover {
+    color: #d4a373;
+}
+
+/* ===== LOGO IMAGE + TEXT ===== */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+/* ============================= */
+/* ===== FULLSCREEN HERO ===== */
+/* ============================= */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* centers horizontally */
+    text-align: center;        /* centers text */
+    color: #fff;
+    z-index: 0;
+}
+
+/* Slideshow container */
+.slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Each slide */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1.2s ease-in-out, transform 6s ease-in-out;
+    z-index: 0;
+}
+
+/* Active slide */
+.slide.active {
+    opacity: 1;
+    transform: scale(1.08);   /* subtle cinematic zoom */
+}
+
+/* Dark overlay */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+}
+
+/* Hero content above everything */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 750px;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 60px;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+
+/* ============================= */
+/* ===== BUTTONS ===== */
+/* ============================= */
+
+.btn {
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.primary {
+    background: #d4a373;
+    color: #ffffff;
+    border: none;
+}
+
+.primary:hover {
+    background: #b5835a;
+}
+
+.secondary {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+}
+
+.secondary:hover {
+    background: #ffffff;
+    color: #000000;
+}
+
+
+/* ============================= */
+/* ===== ABOUT ===== */
+/* ============================= */
+
+.about {
+    padding: 120px 0;
+    background: #f8f5f0;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #2d1b0f;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.about-image img {
+    width: 300px;
+}
+
+
+/* ============================= */
+/* ===== TESTIMONIALS ===== */
+/* ============================= */
+
+.testimonials {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.testimonial-slider {
+    overflow: hidden;
+    max-width: 600px;
+    margin: auto;
+}
+
+.testimonial-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.testimonial-card {
+    min-width: 100%;
+    background: #f8f5f0;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.testimonial-dots {
+    margin-top: 25px;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #ccc;
+    display: inline-block;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #d4a373;
+}
+
+
+/* ============================= */
+/* ===== FOOTER ===== */
+/* ============================= */
+
+.footer {
+    background: #2d1b0f;
+    color: #ffffff;
+    padding: 80px 0 30px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.footer-column h3 {
+    margin-bottom: 15px;
+}
+
+.footer-column p {
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+    color: #d4a373;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 14px;
+}
+
+
+/* ============================= */
+/* ===== RESPONSIVE ===== */
+/* ============================= */
+
+@media (max-width: 900px) {
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+/* ============================= */
+/* ===== SHOP SECTION ===== */
+/* ============================= */
+
+.shop-section {
+    padding: 140px 0 100px; /* top extra because header is fixed */
+    background: #f8f5f0;
+}
+
+.shop-heading {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #2d1b0f;
+}
+
+/* Card Layout */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* Individual Card */
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+/* Card Image */
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #2d1b0f;
+}
+
+.card p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* ============================= */
+/* ===== SHOP PAGE HEADER FIX ===== */
+/* ============================= */
+
+.shop-page .header {
+    position: relative;   /* Remove fixed */
+    background: #2d1b0f;  /* Solid background */
+    padding: 15px 0;
+}
+
+.shop-page .shop-section {
+    padding: 40px 0 100px;
+}
+
+.shop-heading {
+    margin-bottom: 40px;
+}
+.why-learn {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* 2 columns fixed */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* ============================= */
+/* ===== LEARN PAGE FIX ===== */
+/* ============================= */
+
+.learn-page .header {
+    position: relative;     /* remove fixed */
+    background: #2d1b0f;     /* solid background */
+    padding: 15px 0;
+}
+
+.learn-page .learn-hero {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.learn-page .learn-hero-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.learn-page .learn-benefits {
+    padding: 80px 0;
+    background: #f8f5f0;
+}
+
+.learn-page .benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.learn-page .benefit-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.learn-page .video-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.learn-page .video-container {
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+}
+
+/* ============================= */
+/* ===== LEARN HERO FIX ===== */
+/* ============================= */
+
+.learn-page .learn-hero {
+    padding: 120px 0 100px;
+    background: #f8f5f0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.learn-page .learn-hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: #2d1b0f;
+}
+
+.learn-page .learn-hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.learn-page .learn-hero .btn {
+    margin-top: 10px;
+}
+
+/* ============================= */
+/* ===== WORKSHOP PAGE HEADER FIX ===== */
+/* ============================= */
+
+.workshop-page .header {
+    background: #2d1b0f;   /* Same dark background as shop */
+}
+
+/* ============================= */
+/* ===== WORKSHOP DETAILS FIX ===== */
+/* ============================= */
+
+.workshop-page .workshop-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0 60px;   /* removed top padding */
+}
+
+.workshop-page .details-box {
+    width: 100%;
+    max-width: 360px;     /* smaller size */
+    margin: 0 auto;       /* forces perfect center */
+    padding: 20px 18px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    background: #ffffff;
+}
+
+/* Align each row properly */
+
+.workshop-page .details-box p {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+
+/* Align all labels perfectly */
+.workshop-page .details-box strong {
+    min-width: 140px;   /* fixed label width */
+    display: inline-block;
+}
+
+.workshop-page .details-box strong {
+    width: 120px;              /* keeps labels aligned */
+}
+
+.workshop-page .details-box .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    padding: 14px 0;
+    font-size: 16px;
+}
+
+/* ============================= */
+/* ===== WORKSHOP HERO FIX ===== */
+/* ============================= */
+
+
+
+/* Make all cards equal height */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Important Fix */
+.card {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/* Push button to bottom */
+.btn-group {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ================= PERFECT LEARN HERO ALIGNMENT ================= */
+
+.learn-hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 90vh;
+    padding: 0 20px;
+}
+
+.learn-hero-content {
+    max-width: 1200px;
+}
+
+.learn-hero-content h1 {
+    font-size: 52px;
+}
+
+.learn-hero-content p {
+    max-width: 900px;   /* increased width */
+    margin: 0 auto 30px;
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.learn-hero-content .btn {
+    margin-top: 10px;   /* smaller gap */
+}
+
+@media (min-width: 1200px) {
+    .learn-hero-content h1 {
+        white-space: nowrap;
+        font-size: 50px;
+    }
+}
+
+/* ===== WORKSHOP HERO ===== */
+.workshop-page .workshop-hero {
+    padding: 90px 20px 20px;   /* reduced bottom padding */
+    background: #e9e4df;
+    text-align: center;
+}
+
+.workshop-hero-content h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #2d1b0f;
+    margin-bottom: 20px;
+}
+
+.workshop-hero-content p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    max-width: 650px;       /* controls line width */
+    margin: 0 auto;         /* perfect center alignment */
+    line-height: 1.9;       /* elegant spacing */
+    color: #5c4a3f;
+}
+
+/* ===== NAVBAR SPACING ===== */
+
+.header .nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.header .nav a:last-child {
+    margin-left: auto;
+    font-weight: 600;
+}
+
+/* ============================= */
+/* ===== SHOP PRODUCT UPGRADE ===== */
+/* ============================= */
+
+.price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2d1b0f;
+    margin: 8px 0 12px;
+}
+
+.quantity-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.quantity-box button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background: #d4a373;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.quantity-box button:hover {
+    background: #b5835a;
+}
+
+.qty {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-cart {
+    background: #ff9f00;
+    color: white;
+    border: none;
+}
+
+.buy-now {
+    background: #fb641b;
+    color: white;
+    border: none;
+}
+
+.add-cart:hover,
+.buy-now:hover {
+    opacity: 0.9;
+}
+
+/* ============================= */
+/* ===== CART PAGE ===== */
+/* ============================= */
+
+.cart-page {
+    padding: 60px 0 80px;   /* spacing below fixed header */
+    background: #f8f5f0;
+}
+
+.cart-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.cart-page .header {
+    position: relative;
+    background: #2d1b0f;
+    padding: 15px 0;
+}
+
+/* Align image + details */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Left Image */
+.cart-left img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Middle Section */
+.cart-middle {
+    flex: 1;
+    margin-left: 25px;
+}
+
+.cart-middle h3 {
+    margin-bottom: 8px;
+}
+
+.cart-middle p {
+    margin: 4px 0;
+    color: #555;
+}
+
+/* Right Section */
+.cart-right {
+    text-align: right;
+}
+
+.item-total {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cart-item button {
+    padding: 6px 14px;
+    border: none;
+    background: #8B4513;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cart-item button:hover {
+    background: #6a3410;
+}
+
+.cart-total {
+    text-align: right;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 25px;
+    color: #2d1b0f;
+}
+
+/* ===== CART ACTIONS (Select + Buy) ===== */
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;                     /* space between items */
+    margin: 30px 0 35px;
+    padding: 18px 25px;
+    background: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.cart-actions .select-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-actions input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.cart-actions label {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#proceedToCheckout {
+    background-color: #ffd814;
+    border: 1px solid #fcd200;
+    color: #0f1111;
+    padding: 16px 40px;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 35px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#proceedToCheckout:hover {
+    background-color: #f7ca00;
+    transform: translateY(-2px);
+}
+
+/* ================= PROFESSIONAL CONTACT SECTION ================= */
+
+.contact-section {
+    padding: 80px 0 100px;
+    background: #f8f5f2;
+}
+
+.contact-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 100px;
+}
+
+/* ===== LEFT SIDE ===== */
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h2 {
+    font-size: 40px;
+    margin-bottom: 25px;
+    color: #2d1b0f;
+}
+
+.contact-info p {
+    margin-bottom: 18px;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Add spacing between info lines */
+.contact-info p strong {
+    display: inline-block;
+    width: 90px;
+    color: #2d1b0f;
+}
+
+/* ===== RIGHT SIDE FORM ===== */
+
+.contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #d4a373;
+    box-shadow: 0 0 0 3px rgba(212,163,115,0.15);
+}
+
+.contact-form textarea {
+    resize: none;
+    min-height: 130px;
+}
+
+.contact-form button {
+    align-self: flex-start;
+    padding: 14px 34px;
+    background: #2d1b0f;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: #4b2e1e;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .contact-form {
+        padding: 30px;
+    }
+}
+
+/* ============================= */
+/* ===== CONTACT PAGE HEADER FIX ===== */
+/* ============================= */
+
+.contact-page .header {
+    position: relative;      /* remove fixed */
+    background: #2d1b0f;     /* solid navbar */
+    padding: 15px 0;
+}
+
+.contact-page .contact-section {
+    padding: 60px 0 100px;   /* remove extra top spacing */
+}
+
+/* ============================= */
+/* FIX NAVBAR ONLY ON ABOUT PAGE */
+/* ============================= */
+
+.about-page .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #2d1b0f;   /* ensures visibility */
+    z-index: 9999;         /* keeps it above everything */
+}
+
+
+/* ============================= */
+/* ===== ABOUT PAGE FIXED NAV === */
+/* ============================= */
+
+.about-page {
+    padding-top: 90px;   /* prevents navbar overlap */
+}
+
+
+/* HERO SECTION */
+.about-hero {
+    margin: 0;
+    padding: 60px 20px 40px;
+    text-align: center;
+    background: #f8f5f2;
+}
+
+.about-hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #3b2414;
+    margin-bottom: 15px;
+}
+
+.about-hero p {
+    font-size: 17px;
+    color: #666;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+
+/* ============================= */
+/* PERFECT ZIG-ZAG ALIGNMENT */
+/* ============================= */
+
+.about-zigzag {
+    width: 100%;
+    margin: 0;
+}
+
+/* ROW */
+.zigzag-row {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 240px;
+    margin: 50px auto;        /* spacing between cards */
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* Reverse */
+.zigzag-row.reverse {
+    flex-direction: row-reverse;
+}
+
+/* IMAGE SIDE */
+.zigzag-image {
+    flex: 1;
+    height: 260px;        /* fixed equal height */
+}
+
+.zigzag-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    /* crops perfectly */
+    display: block;
+}
+
+/* CONTENT SIDE */
+.zigzag-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    background: #f1ece6;      /* soft grey card */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06); /* subtle shadow */
+}
+
+/* TEXT */
+.zigzag-content h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #3b2414;
+    margin-bottom: 15px;
+}
+
+.zigzag-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    max-width: 500px;
+}
+
+/* MOBILE FIX */
+@media (max-width: 900px) {
+
+    .zigzag-row,
+    .zigzag-row.reverse {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .zigzag-image {
+        height: 250px;
+    }
+
+    .zigzag-content {
+        padding: 40px 25px;
+        text-align: center;
+        align-items: center;
+    }
+
+}
+

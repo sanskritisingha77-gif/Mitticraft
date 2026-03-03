@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop | Mitticraft India</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="shop-page">
+
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="container nav-container">
+        <a href="index.html" class="logo">
+            <img src="images/Logo.png" alt="Mitticraft Logo">
+            <span>Mitticraft India</span>
+        </a>
+        <nav class="nav">
+            <a href="#" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="learn.html">Learn</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html" class="cart-icon">🛒 Cart</a>
+        </nav>
+    </div>
+</header>
+
+
+<!-- ================= SHOP SECTION ================= -->
+<section class="shop-section">
+    <div class="container">
+        <h2 class="shop-heading">Shop Collection</h2>
+
+        <div class="card-container">
+
+            <div class="card">
+                <img src="Images/Mirror Frame.png" alt="Mud Mirror Frame">
+                <h3>Mud Mirror Frame</h3>
+                <p>Traditional Kutch mirror work handcrafted using natural clay.</p>
+            
+                <div class="price">₹ 1,499</div>
+            
+                <div class="quantity-box">
+                    <button onclick="decreaseQty(this)">-</button>
+                    <span class="qty">1</span>
+                    <button onclick="increaseQty(this)">+</button>
+                </div>
+            
+                <div class="btn-group">
+                    <button class="btn add-cart" onclick="addToCart(this, 1499)">Add to Cart</button>
+                    <button class="btn buy-now" onclick="buyNow(this, 1499)">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="Images/Wall Panel.png" alt="Decor Wall Panel">
+                <h3>Decor Wall Panel</h3>
+                <p>Elegant textured wall art blending heritage with modern interiors.</p>
+            
+                <div class="price">₹ 2,199</div>
+            
+                <div class="quantity-box">
+                    <button onclick="decreaseQty(this)">-</button>
+                    <span class="qty">1</span>
+                    <button onclick="increaseQty(this)">+</button>
+                </div>
+            
+                <div class="btn-group">
+                    <button class="btn add-cart" onclick="addToCart(this, 2199)">Add to Cart</button>
+                    <button class="btn buy-now" onclick="buyNow(this, 2199)">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="Images/Wall Plate.png" alt="Mud Wall Plate">
+                <h3>Mud Wall Plate</h3>
+                <p>Hand-shaped decorative plate inspired by rural homes.</p>
+            
+                <div class="price">₹ 999</div>
+            
+                <div class="quantity-box">
+                    <button onclick="decreaseQty(this)">-</button>
+                    <span class="qty">1</span>
+                    <button onclick="increaseQty(this)">+</button>
+                </div>
+            
+                <div class="btn-group">
+                    <button class="btn add-cart" onclick="addToCart(this, 999)">Add to Cart</button>
+                    <button class="btn buy-now" onclick="buyNow(this, 999)">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="Images/Peacock.png" alt="Peacock Mud Art">
+                <h3>Peacock Mud Art</h3>
+                <p>Symbol of beauty and Indian tradition.</p>
+            
+                <div class="price">₹ 1,799</div>
+            
+                <div class="quantity-box">
+                    <button onclick="decreaseQty(this)">-</button>
+                    <span class="qty">1</span>
+                    <button onclick="increaseQty(this)">+</button>
+                </div>
+            
+                <div class="btn-group">
+                    <button class="btn add-cart" onclick="addToCart(this, 1799)">Add to Cart</button>
+                    <button class="btn buy-now" onclick="buyNow(this, 1799)">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="Images/Square Frame.png" alt="Square Mud Frame">
+                <h3>Square Mud Frame</h3>
+                <p>Traditional clay frame with mirrors.
+                    Classic square wall art.</p>
+            
+                <div class="price">₹ 1,299</div>
+            
+                <div class="quantity-box">
+                    <button onclick="decreaseQty(this)">-</button>
+                    <span class="qty">1</span>
+                    <button onclick="increaseQty(this)">+</button>
+                </div>
+            
+                <div class="btn-group">
+                    <button class="btn add-cart" onclick="addToCart(this, 1299)">Add to Cart</button>
+                    <button class="btn buy-now" onclick="buyNow(this, 1299)">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="Images/Rectangular Frame.png" alt="Rectangular Mud Frame">
+                <h3>Rectangular Mud Frame</h3>
+                <p>Elegant long frame ideal for hallways and entrances.</p>
+            
+                <div class="price">₹ 1,599</div>
+            
+                <div class="quantity-box">
+                    <button onclick="decreaseQty(this)">-</button>
+                    <span class="qty">1</span>
+                    <button onclick="increaseQty(this)">+</button>
+                </div>
+            
+                <div class="btn-group">
+                    <button class="btn add-cart" onclick="addToCart(this, 1599)">Add to Cart</button>
+                    <button class="btn buy-now" onclick="buyNow(this, 1599)">Buy Now</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    <div class="container footer-container">
+
+        <div class="footer-column">
+            <h3>Mitticraft India</h3>
+            <p>Preserving traditional mud art while supporting local artisans.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="MudArt.html">Home</a></li>
+                <li><a href="MudArt.html#about">About</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="MudArt.html#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Contact</h3>
+            <p>Email: mitticraftindia@gmail.com</p>
+            <p>Phone: +91 98765 43210</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Mitticraft India | Handmade with tradition
+    </div>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

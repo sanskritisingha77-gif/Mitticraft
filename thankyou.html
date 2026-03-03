@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Success - Mitticraft</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #fdf6ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .success-box {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #28a745;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #ff6b1a;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .home-btn:hover {
+            background: #e85d0f;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="success-box">
+
+    <div class="success-icon">🎉</div>
+
+    <h2>Order Placed Successfully!</h2>
+
+    <p>
+        Thank you for shopping with Mitticraft.  
+        Your handcrafted art will be delivered soon.
+    </p>
+
+    <a href="shop.html" class="home-btn">Continue Shopping</a>
+
+</div>
+
+<script>
+    // Extra safety: clear any remaining checkout data
+    localStorage.removeItem("checkoutItems");
+    localStorage.removeItem("checkoutProduct");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+        }
+
+        .cart-container {
+            width: 70%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        /* ===== CART ACTIONS (Professional Style) ===== */
+
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            margin: 25px 0 35px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+
+        .cart-actions label {
+            font-weight: 600;
+            margin-left: 10px;
+            color: #2d1b0f;
+            cursor: pointer;
+        }
+
+        .cart-actions input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        #proceedToCheckout {
+    background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+    border: 1px solid #a88734;
+    color: #111;
+    padding: 12px 30px;   /* reduced from 18px 50px */
+    font-weight: 700;
+    font-size: 14px;      /* reduced from 17px */
+    border-radius: 35px;  /* slightly smaller curve */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: 0.2s ease;
+}
+#proceedToCheckout:hover {
+    background: linear-gradient(to bottom, #f5d78e, #eeb933);
+    transform: translateY(-2px);
+}
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 25px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-left img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-middle {
+            flex: 1;
+        }
+
+        .cart-middle p {
+            margin: 4px 0;
+            color: #555;
+        }
+
+        .cart-right {
+            text-align: right;
+            min-width: 120px;
+        }
+
+        .item-total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .cart-right button {
+            padding: 6px 14px;
+            border: none;
+            background: #8B4513;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .cart-right button:hover {
+            background: #6a3410;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="cart-container">
+    <h2>Your Shopping Cart 🛒</h2>
+
+    <div class="cart-actions">
+        <div>
+            <input type="checkbox" id="selectAll">
+            <label for="selectAll">Select All</label>
+        </div>
+
+        <button id="proceedToCheckout">Proceed to Checkout</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+        Grand Total: ₹<span id="grandTotal">0</span>
+    </div>
+</div>
+
+<script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const container = document.getElementById("cartItems");
+    
+    let grandTotal = 0;
+    
+    if(cart.length === 0){
+        container.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+        cart.forEach((item, index) => {
+            grandTotal += item.total;
+    
+            container.innerHTML += `
+            <div class="cart-item">
+    
+                <input type="checkbox"
+                       class="item-checkbox"
+                       data-total="${item.total}"
+                       style="transform:scale(1.2); margin-right:15px;">
+    
+                <div class="cart-left">
+                    <img src="${item.image}" alt="${item.name}">
+                </div>
+    
+                <div class="cart-middle">
+                    <h3>${item.name}</h3>
+                    <p>Price: ₹${item.price}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                </div>
+    
+                <div class="cart-right">
+                    <p class="item-total">₹${item.total}</p>
+                    <button onclick="removeItem(${index})">Remove</button>
+                </div>
+    
+            </div>
+            `;
+        });
+    
+        document.getElementById("grandTotal").innerText = grandTotal;
+    
+        const checkboxes = document.querySelectorAll(".item-checkbox");
+        const selectAll = document.getElementById("selectAll");
+        const grandTotalElement = document.getElementById("grandTotal");
+    
+        function updateTotal() {
+            let total = 0;
+    
+            checkboxes.forEach(box => {
+                if (box.checked) {
+                    total += parseInt(box.dataset.total);
+                }
+            });
+    
+            grandTotalElement.innerText = total;
+        }
+    
+        checkboxes.forEach(box => {
+            box.addEventListener("change", updateTotal);
+        });
+    
+        selectAll.addEventListener("change", () => {
+            checkboxes.forEach(box => {
+                box.checked = selectAll.checked;
+            });
+            updateTotal();
+        });
+    
+        document.getElementById("proceedToCheckout").addEventListener("click", () => {
+    let selected = [];
+
+    checkboxes.forEach((box, i) => {
+        if (box.checked) {
+            selected.push(cart[i]);
+        }
+    });
+
+    if (selected.length === 0) {
+        alert("Please select at least one item!");
+        return;
+    }
+
+    // 🔥 SAVE SELECTED ITEMS FOR CHECKOUT
+    localStorage.setItem("checkoutItems", JSON.stringify(selected));
+
+    // 🔥 REDIRECT TO CHECKOUT PAGE
+    window.location.href = "checkout.html";
+});
+    }
+    
+    function removeItem(index){
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        location.reload();
+    }
+    </script>
+
+</body>
+</html>
